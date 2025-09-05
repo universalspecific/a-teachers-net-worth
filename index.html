@@ -425,6 +425,56 @@
             text-align: left;
         }
 
+        /* Testimonials Section */
+        .testimonials {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .testimonials h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .testimonial-quote {
+            font-style: italic;
+            font-size: 1.15rem;
+            margin-bottom: 1.5rem;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+
         /* Resources Section */
         .resources {
             padding: 4rem 0;
@@ -545,6 +595,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#story">The Story</a></li>
                 <li><a href="#impact">Impact</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#resources">Resources</a></li>
                 <li><a href="#author">Author</a></li>
                 <li><a href="services.html">Services</a></li>
@@ -618,6 +669,27 @@
                     <div class="impact-icon">💡</div>
                     <h3>For the Profession</h3>
                     <p>An unintimidating, engaging, and motivating way to support all employees while giving districts a practical solution to strengthen retention and reduce costly turnover.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2>What Readers Are Saying</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"Suzanne does a great job of explaining everything and in a way that is not intimidating."</p>
+                    <p class="testimonial-author">— Robin</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"I loved this! I think every employee should read it!"</p>
+                    <p class="testimonial-author">— Ann R.</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"Suzanne was a god-send! ... She showed me that retirement was not as far away as I thought."</p>
+                    <p class="testimonial-author">— Sophia, community college professor</p>
                 </div>
             </div>
         </div>
