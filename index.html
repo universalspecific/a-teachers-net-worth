@@ -791,6 +791,23 @@
         </div>
     </section>
 
+    <!-- Newsletter Signup -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Stay Connected</h2>
+            <p>Join our community for financial tips, resources, and updates specifically for educators</p>
+            <form class="newsletter-form" method="POST" netlify name="newsletter" id="newsletterForm">
+                <input type="hidden" name="form-name" value="newsletter">
+                <input type="email" name="email" placeholder="Enter your email" required id="emailInput">
+                <button type="submit" id="submitButton">Subscribe</button>
+            </form>
+            <div class="newsletter-success" id="successMessage" style="display: none;">
+                <h3>✅ Thank you for subscribing!</h3>
+                <p>You'll receive financial tips and resources for educators in your inbox soon.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials">
         <div class="container">
@@ -828,23 +845,6 @@
                     <li>Interactive, customizable spreadsheets and tools</li>
                     <li>Recruitment and retention strategies for districts</li>
                 </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Signup -->
-    <section class="newsletter">
-        <div class="container">
-            <h2>Stay Connected</h2>
-            <p>Join our community for financial tips, resources, and updates specifically for educators</p>
-            <form class="newsletter-form" method="POST" netlify name="newsletter" id="newsletterForm">
-                <input type="hidden" name="form-name" value="newsletter">
-                <input type="email" name="email" placeholder="Enter your email" required id="emailInput">
-                <button type="submit" id="submitButton">Subscribe</button>
-            </form>
-            <div class="newsletter-success" id="successMessage" style="display: none;">
-                <h3>✅ Thank you for subscribing!</h3>
-                <p>You'll receive financial tips and resources for educators in your inbox soon.</p>
             </div>
         </div>
     </section>
