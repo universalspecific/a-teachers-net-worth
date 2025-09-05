@@ -382,6 +382,27 @@
             background: #b8941f;
         }
 
+        .newsletter-success {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid var(--accent-color);
+        }
+
+        .newsletter-success h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .newsletter-success p {
+            color: white;
+            margin: 0;
+        }
+
         /* Author Section */
         .author-section {
             padding: 4rem 0;
@@ -816,11 +837,15 @@
         <div class="container">
             <h2>Stay Connected</h2>
             <p>Join our community for financial tips, resources, and updates specifically for educators</p>
-            <form class="newsletter-form" method="POST" netlify name="newsletter">
+            <form class="newsletter-form" method="POST" netlify name="newsletter" id="newsletterForm">
                 <input type="hidden" name="form-name" value="newsletter">
-                <input type="email" name="email" placeholder="Enter your email" required>
-                <button type="submit">Subscribe</button>
+                <input type="email" name="email" placeholder="Enter your email" required id="emailInput">
+                <button type="submit" id="submitButton">Subscribe</button>
             </form>
+            <div class="newsletter-success" id="successMessage" style="display: none;">
+                <h3>✅ Thank you for subscribing!</h3>
+                <p>You'll receive financial tips and resources for educators in your inbox soon.</p>
+            </div>
         </div>
     </section>
 
@@ -905,6 +930,40 @@
         // Initialize banner text
         handleBannerText();
         window.addEventListener('resize', handleBannerText);
+
+        // Handle newsletter form submission
+        const newsletterForm = document.getElementById('newsletterForm');
+        const successMessage = document.getElementById('successMessage');
+        const submitButton = document.getElementById('submitButton');
+        const emailInput = document.getElementById('emailInput');
+
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            submitButton.textContent = 'Subscribing...';
+            submitButton.disabled = true;
+            
+            // Submit to Netlify
+            const formData = new FormData(newsletterForm);
+            
+            fetch('/', {
+                method: 'POST',
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(() => {
+                // Hide form and show success message
+                newsletterForm.style.display = 'none';
+                successMessage.style.display = 'block';
+            })
+            .catch((error) => {
+                // Reset button state on error
+                submitButton.textContent = 'Subscribe';
+                submitButton.disabled = false;
+                alert('There was an error submitting your email. Please try again.');
+            });
+        });
 
         // Add scroll effect to header
         window.addEventListener('scroll', function() {
