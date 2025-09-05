@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Teacher's Net Worth - Suzanne Zentner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c5f7c;
+            --accent-color: #d4af37;
+            --text-light: #6c757d;
+            --bg-light: #f8f9fa;
+            --max-width: 1200px;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(45deg, var(--accent-color) 0%, #e6c547 100%);
+            color: #333;
+            padding: 0.8rem 0;
+            text-align: center;
+            font-weight: bold;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1001;
+        }
+
+        .banner a {
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .banner:hover {
+            background: linear-gradient(45deg, #c9a32a 0%, var(--accent-color) 100%);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a3d52 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 48px;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 108px;
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(232, 244, 248, 0.95) 0%, rgba(255, 255, 255, 0.9) 70%), 
+                        url('financial-seminar.png') center/cover no-repeat;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(44, 95, 124, 0.1) 0%, rgba(255, 255, 255, 0.8) 100%);
+            z-index: 1;
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .book-cover {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border-radius: 5px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            line-height: 1.1;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-weight: normal;
+        }
+
+        .hero-text .author {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .endorsement {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-left: 5px solid var(--accent-color);
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-radius: 0 10px 10px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .endorsement-text {
+            font-style: italic;
+            font-size: 1.15rem;
+            margin-bottom: 0.8rem;
+            color: #444;
+        }
+
+        .endorsement-author {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .endorsement-title {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+        
+        .btn-primary:hover {
+            background: #c9a32a;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Story Section */
+        .story {
+            padding: 0 0 4rem 0;
+            background: white;
+        }
+
+        .story-header {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(44, 95, 124, 0.8) 0%, rgba(26, 61, 82, 0.9) 100%),
+                        url('financial-teacher.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 4rem;
+        }
+
+        .story h2 {
+            font-size: 3rem;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            z-index: 2;
+            position: relative;
+        }
+
+        .story-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .story-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Impact Section */
+        .impact {
+            padding: 4rem 0;
+            background: var(--bg-light);
+        }
+
+        .impact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .impact-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .impact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .impact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .impact-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a3d52 100%);
+            color: white;
+        }
+
+        .newsletter h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .newsletter p {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            padding: 1rem 2rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: #b8941f;
+        }
+
+        /* Author Section */
+        .author-section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .author-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .author-bio h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .credentials {
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        .author-bio p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-align: left;
+            color: #444;
+        }
+
+        .author-quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1.5rem;
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        /* Resources Section */
+        .resources {
+            padding: 4rem 0;
+            background: var(--bg-light);
+        }
+
+        .resources h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .resources-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .resources-list {
+            list-style: none;
+            text-align: left;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .resources-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+        }
+
+        .resources-list li:before {
+            content: "✓";
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-right: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .book-cover {
+                margin: 0 auto;
+                max-width: 300px;
+            }
+
+            .btn-group {
+                justify-content: center;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .story-header {
+                height: 300px;
+            }
+
+            .story h2 {
+                font-size: 2.2rem;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner -->
+    <div class="banner">
+        <div class="container">
+            <a href="webinar.html">🎯 9/18 Webinar: Want to recruit and retain top talent? Learn more!</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">A Teacher's Net Worth</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#story">The Story</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#author">Author</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div>
+                    <img src="atnw-book-cover.jpg" alt="A Teacher's Net Worth Book Cover" class="book-cover">
+                </div>
+                <div class="hero-text">
+                    <h1>A Teacher's Net Worth</h1>
+                    <p class="subtitle">Helping Teachers Build Smart Financial Futures</p>
+                    <p class="author">by Suzanne Zentner, Ph.D., MBA</p>
+                    
+                    <div class="endorsement">
+                        <p class="endorsement-text">"This book must be mandatory reading for all new and existing teachers"</p>
+                        <p class="endorsement-author">— Andrew Hallam</p>
+                        <p class="endorsement-title">International Bestselling Author of <i></i>Millionaire Teacher</p>
+                    </div>
+
+                    <p class="tagline">Written by an educator for educators</p>
+                    
+                    <div class="btn-group">
+                        <a href="https://www.amazon.com/Teachers-Net-Worth-Suzanne-Zentner/dp/B0FNQJYM9X/" target="_blank" class="btn btn-primary">📱 Buy E-Book and 11-Tabbed Spreadsheet</a>
+                        <a href="https://shop.ingramspark.com/b/084?params=6yNvMSF8NpJOKs0oQf2sAlAt4t73n3EE7pqtlbNGnAt" target="_blank" class="btn btn-secondary">📖 Buy Hard Copy and 11-Tabbed Spreadsheet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Story Section -->
+    <section id="story" class="story">
+        <div class="story-header">
+            <h2>The Story Behind the Book</h2>
+        </div>
+        <div class="container">
+            <div class="story-content">
+                <p>The idea for <strong>A Teacher's Net Worth</strong> grew out of ongoing efforts to address teacher turnover, including a pivotal conversation with an exceptionally talented high school special education teacher. He candidly shared his struggle to make ends meet, feeling he had no option but to resign. He laid out his family budget, voiced his confusion about district health insurance plans, and expressed doubts about the state pension plan and other retirement tools. Ultimately, he felt trapped in a persistent state of financial distress.</p>
+                
+                <p>Through our conversations, we walked through each of his concerns, answered his questions, corrected misperceptions, and opened new insights. We reviewed his income and debt, created a practical monthly budget, compared health, dental, and vision insurance options, explored employer-sponsored savings plans including 403(b), 457(b), and HSAs/FSAs, clarified how pensions are calculated, and discussed the value of unused leave time. Finally, we looked at how to compare public and private sector jobs and, most importantly, discussed the value proposition of teaching.</p>
+                
+                <p>With this clearer understanding of both his financial picture and the district's investment in him, his perspective shifted. He became more optimistic about his future — and this exceptionally talented educator decided to stay in the profession!</p>
+                
+                <p>That experience and many others revealed a larger opportunity to help others gain the same clarity and insight. What began as mini-sessions for all staff — teachers, support staff and administrators — soon grew into longer, more detailed presentations and interactive workshops. This book, along with the suite of interactive, customizable spreadsheets and other recruitment and retention tools are now coming online to reach more.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="impact">
+        <div class="container">
+            <h2>The Impact</h2>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-icon">👥</div>
+                    <h3>For Educators</h3>
+                    <p>When employees understand their salary, benefits, and overall financial situation, they feel valued beyond their contracted responsibilities. That sense of value fosters stronger engagement, deeper motivation, and lasting loyalty.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">🏫</div>
+                    <h3>For Districts</h3>
+                    <p>Reduced turnover, lower absenteeism, higher productivity, and an enhanced ability to attract and retain top talent by sharing the full value of employment.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">💡</div>
+                    <h3>For the Profession</h3>
+                    <p>An unintimidating, engaging, and motivating way to support all employees while giving districts a practical solution to strengthen retention and reduce costly turnover.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="resources">
+        <div class="container">
+            <h2>What's Included</h2>
+            <div class="resources-content">
+                <p>Each e-book or hard copy includes the <i>A Teacher's Net Worth</i> book AND an 11-tabbed, fully customizable spreadsheet that takes the reader through their own, private financial journey. Together, they provide comprehensive a clear path — specifically tailored for educators — for a smart financial future.</p>
+                <ul class="resources-list">
+                    <li>Understanding your complete compensation package</li>
+                    <li>Navigating health, dental, and vision insurance options</li>
+                    <li>Maximizing 403(b), 457(b), and HSA/FSA benefits</li>
+                    <li>Understanding pension calculations and retirement planning</li>
+                    <li>Creating practical monthly budgets</li>
+                    <li>Comparing public vs. private sector opportunities</li>
+                    <li>Interactive, customizable spreadsheets and tools</li>
+                    <li>Recruitment and retention strategies for districts</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Stay Connected</h2>
+            <p>Join our community for financial tips, resources, and updates specifically for educators</p>
+            <form class="newsletter-form" method="POST" netlify>
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Author Bio -->
+    <section id="author" class="author-section">
+        <div class="container">
+            <div class="author-content">
+                <div class="author-bio">
+                    <h2>About Suzanne Zentner</h2>
+
+                    <p>Suzanne Zentner brings a unique combination of educational expertise and financial acumen to address one of education's most pressing challenges: teacher retention. With both a Ph.D. and MBA, she understands the complex intersection of education policy, human resources, and personal finance.</p>
+                    
+                    <p>Through years of working directly with educators at all stages of their careers, Suzanne has developed practical, accessible tools that transform how teachers understand and manage their financial futures. Her work has helped countless educators gain clarity about their compensation, benefits, and long-term financial security.</p>
+                    
+                    <div class="author-quote">
+                        "I am deeply grateful to all those who have embraced A Teacher's Net Worth tools over the years and offered such positive feedback. It is that encouragement which has been the impetus to expand this work more broadly. I truly hope this work supports you, your district, and in turn, our profession."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <!-- Social media links to be updated -->
+                <a href="#" target="_blank" title="LinkedIn">💼</a>
+                <a href="#" target="_blank" title="Twitter/X">🐦</a>
+                <a href="mailto:ateachersnetworth@gmail.com" title="Email">✉️</a>
+            </div>
+            <p>&copy; 2024 Suzanne Zentner. All rights reserved. | A Teacher's Net Worth</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'linear-gradient(135deg, rgba(44, 95, 124, 0.98) 0%, rgba(26, 61, 82, 0.98) 100%)';
+            } else {
+                header.style.background = '';
+            }
+        });
+    </script>
+</body>
+</html>

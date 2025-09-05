@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webinar - Using Compensation to Recruit and Retain Top Talent</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c5f7c;
+            --accent-color: #d4af37;
+            --text-light: #6c757d;
+            --bg-light: #f8f9fa;
+            --max-width: 1200px;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(45deg, var(--accent-color) 0%, #e6c547 100%);
+            color: #333;
+            padding: 0.8rem 0;
+            text-align: center;
+            font-weight: bold;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .banner a {
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .banner:hover {
+            background: linear-gradient(45deg, #c9a32a 0%, var(--accent-color) 100%);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a3d52 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 48px;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 128px;
+            padding: 4rem 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(44, 95, 124, 0.1) 0%, rgba(255, 255, 255, 0.8) 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* Webinar Details */
+        .webinar-details {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a3d52 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .webinar-info {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem auto;
+            max-width: 600px;
+            border: 2px solid var(--accent-color);
+        }
+
+        .webinar-date {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .webinar-time {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .webinar-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .content-section h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .content-text {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .content-text p {
+            margin-bottom: 2rem;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 4rem 0;
+            background: var(--bg-light);
+        }
+
+        .benefits h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+        }
+
+        .benefits-intro {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #444;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .benefits-list {
+            max-width: 800px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        .benefits-list li {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            border-left: 5px solid var(--accent-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .benefits-list li:hover {
+            transform: translateX(5px);
+        }
+
+        .benefits-list li:before {
+            content: "✓";
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a3d52 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #c9a32a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .webinar-date {
+                font-size: 1.5rem;
+            }
+
+            .webinar-time {
+                font-size: 1.1rem;
+            }
+
+            .benefits-list li {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .benefits-list li:before {
+                margin-bottom: 0.5rem;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner -->
+    <div class="banner">
+        <div class="container">
+            <a href="webinar.html">🎯 9/18 Webinar: Want to recruit and retain top talent? Learn more!</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">A Teacher's Net Worth</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#story">The Story</a></li>
+                <li><a href="index.html#impact">Impact</a></li>
+                <li><a href="index.html#resources">Resources</a></li>
+                <li><a href="index.html#author">Author</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero main-content">
+        <div class="container">
+            <h1>Using Compensation to Recruit and Retain Top Talent</h1>
+            <p class="subtitle">Transform your recruitment and retention strategy with clear compensation communication</p>
+        </div>
+    </section>
+
+    <!-- Webinar Details -->
+    <section class="webinar-details">
+        <div class="container">
+            <div class="webinar-info">
+                <div class="webinar-date">Thursday, September 18</div>
+                <div class="webinar-time">11:00 AM CST</div>
+                <div class="webinar-description">Join A Teacher's Net Worth for an exclusive webinar showing how total rewards statements can clearly demonstrate the full value of employee compensation.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="content-text">
+                <p>School districts across the country are competing for top educators in a challenging labor market. Salaries matter—but so does the full story behind them.</p>
+                
+                <p>By translating contracts, benefits, retirement contributions, and untaxed perks into one clear dollar figure, districts can create powerful tools for both recruitment and retention.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2>What You'll Discover</h2>
+            <div class="benefits-intro">
+                <p>When compensation is communicated clearly, it becomes more than a paycheck—it becomes your most powerful recruitment and retention tool.</p>
+            </div>
+            <ul class="benefits-list">
+                <li>
+                    <div class="benefit-text">
+                        <strong>Boost retention</strong> by helping staff recognize the full investment made in them
+                    </div>
+                </li>
+                <li>
+                    <div class="benefit-text">
+                        <strong>Strengthen recruitment</strong> with a transparent, compelling compensation story
+                    </div>
+                </li>
+                <li>
+                    <div class="benefit-text">
+                        <strong>Decrease absenteeism</strong> by showing how unused days carry real financial value
+                    </div>
+                </li>
+                <li>
+                    <div class="benefit-text">
+                        <strong>Elevate morale</strong> through financial clarity and confidence
+                    </div>
+                </li>
+                <li>
+                    <div class="benefit-text">
+                        <strong>Empower HR leaders</strong> with data-driven tools to engage and retain staff
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Transform Your District?</h2>
+            <p>Our full suite of products and services are designed to empower your workforce and strengthen your district.</p>
+            <a href="mailto:ateachersnetworth@gmail.com?subject=Webinar Registration - September 18" class="btn">Register for the Webinar</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" target="_blank" title="LinkedIn">💼</a>
+                <a href="#" target="_blank" title="Twitter/X">🐦</a>
+                <a href="mailto:ateachersnetworth@gmail.com" title="Email">✉️</a>
+            </div>
+            <p>&copy; 2024 Suzanne Zentner. All rights reserved. | A Teacher's Net Worth</p>
+        </div>
+    </footer>
+
+    <script>
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'linear-gradient(135deg, rgba(44, 95, 124, 0.98) 0%, rgba(26, 61, 82, 0.98) 100%)';
+            } else {
+                header.style.background = '';
+            }
+        });
+    </script>
+</body>
+</html>
