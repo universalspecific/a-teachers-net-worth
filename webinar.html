@@ -288,6 +288,62 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.25);
         }
 
+        /* RSVP Form */
+        .rsvp-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .rsvp-form input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .rsvp-form button {
+            padding: 1rem 2rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .rsvp-form button:hover {
+            background: #c9a32a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+
+        .rsvp-success {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid var(--accent-color);
+        }
+
+        .rsvp-success h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .rsvp-success p {
+            color: white;
+            margin: 0;
+        }
+
         /* Footer */
         footer {
             background: var(--primary-color);
@@ -337,6 +393,10 @@
             .benefits-list li:before {
                 margin-bottom: 0.5rem;
                 margin-right: 0;
+            }
+
+            .rsvp-form {
+                flex-direction: column;
             }
         }
     </style>
@@ -431,12 +491,20 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- RSVP Section -->
     <section class="cta-section">
         <div class="container">
             <h2>Ready to Transform Your District?</h2>
-            <p>Our full suite of products and services are designed to empower your workforce and strengthen your district.</p>
-            <a href="mailto:ateachersnetworth@gmail.com?subject=Webinar Registration - September 18" class="btn">Register for the Webinar</a>
+            <p>Reserve your spot for this exclusive webinar on September 18th</p>
+            <form class="rsvp-form" method="POST" netlify name="sep18webinar" id="rsvpForm">
+                <input type="hidden" name="form-name" value="sep18webinar">
+                <input type="email" name="email" placeholder="Enter your email" required id="rsvpEmailInput">
+                <button type="submit" id="rsvpSubmitButton">RSVP Today!</button>
+            </form>
+            <div class="rsvp-success" id="rsvpSuccessMessage" style="display: none;">
+                <h3>✅ You're registered!</h3>
+                <p>We'll send you webinar details and a reminder before September 18th.</p>
+            </div>
         </div>
     </section>
 
@@ -453,6 +521,40 @@
     </footer>
 
     <script>
+        // Handle RSVP form submission
+        const rsvpForm = document.getElementById('rsvpForm');
+        const rsvpSuccessMessage = document.getElementById('rsvpSuccessMessage');
+        const rsvpSubmitButton = document.getElementById('rsvpSubmitButton');
+        const rsvpEmailInput = document.getElementById('rsvpEmailInput');
+
+        rsvpForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            rsvpSubmitButton.textContent = 'Registering...';
+            rsvpSubmitButton.disabled = true;
+            
+            // Submit to Netlify
+            const formData = new FormData(rsvpForm);
+            
+            fetch('/', {
+                method: 'POST',
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(() => {
+                // Hide form and show success message
+                rsvpForm.style.display = 'none';
+                rsvpSuccessMessage.style.display = 'block';
+            })
+            .catch((error) => {
+                // Reset button state on error
+                rsvpSubmitButton.textContent = 'RSVP Today!';
+                rsvpSubmitButton.disabled = false;
+                alert('There was an error with your registration. Please try again.');
+            });
+        });
+
         // Add scroll effect to header
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
