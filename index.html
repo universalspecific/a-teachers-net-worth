@@ -565,12 +565,21 @@
 
         @media (max-width: 768px) {
             .testimonials-wrapper .testimonial-card {
-                flex: 0 0 calc(85% - 1rem);
+                flex: 0 0 calc(100% - 0.5rem);
                 min-width: auto;
+                margin: 0 0.25rem;
             }
             
             .testimonials-wrapper {
-                gap: 1rem;
+                gap: 0.5rem;
+            }
+            
+            .testimonials-container {
+                padding: 0 10px;
+            }
+            
+            .testimonial-card {
+                padding: 1.5rem;
             }
         }
 
@@ -1262,14 +1271,14 @@
             }
 
             function getVisibleSlides() {
-                if (window.innerWidth <= 768) return 1.2;
+                if (window.innerWidth <= 768) return 1;
                 if (window.innerWidth <= 1024) return 1.8;
                 return 2.5;
             }
 
             function updateSlider() {
                 const slideWidth = wrapper.children[0].offsetWidth;
-                const gap = 32; // 2rem
+                const gap = window.innerWidth <= 768 ? 8 : 32; // 0.5rem on mobile, 2rem on desktop
                 const offset = currentSlide * (slideWidth + gap);
                 wrapper.style.transform = `translateX(-${offset}px)`;
                 
