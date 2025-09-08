@@ -1296,25 +1296,16 @@
 
             function nextSlide() {
                 const maxSlide = totalSlides - Math.floor(getVisibleSlides());
-                alert(`nextSlide: current=${currentSlide}, max=${maxSlide}`);
                 if (currentSlide < maxSlide) {
                     currentSlide++;
-                    alert(`After increment: currentSlide=${currentSlide}`);
                     updateSlider();
-                } else {
-                    alert('Already at max slide');
                 }
             }
 
             function prevSlide() {
-                const maxSlide = totalSlides - Math.floor(getVisibleSlides());
-                alert(`prevSlide: current=${currentSlide}, max=${maxSlide}`);
                 if (currentSlide > 0) {
                     currentSlide--;
-                    alert(`After decrement: currentSlide=${currentSlide}`);
                     updateSlider();
-                } else {
-                    alert('Already at min slide');
                 }
             }
 
@@ -1334,7 +1325,7 @@
                         currentSlide++;
                     }
                     updateSlider();
-                }, 5000); // Slower auto-slide
+                }, 5000);
             }
 
             function stopAutoSlide() {
@@ -1346,7 +1337,6 @@
 
             // Event listeners
             prevBtn.onclick = function() {
-                console.log('Previous button clicked');
                 userInteracting = true;
                 prevSlide();
                 stopAutoSlide();
@@ -1355,7 +1345,6 @@
             };
 
             nextBtn.onclick = function() {
-                console.log('Next button clicked');
                 userInteracting = true;
                 nextSlide();
                 stopAutoSlide();
@@ -1402,8 +1391,6 @@
                 
                 // Only trigger slide change if we had a clear horizontal swipe
                 if (hasSwiped && absDiffX > 50) {
-                    console.log('Touch swipe detected, direction:', diffX > 0 ? 'next' : 'prev');
-                    alert(`Swipe: ${diffX > 0 ? 'next' : 'prev'}, current: ${currentSlide}`);
                     if (diffX > 0) {
                         nextSlide();
                     } else {
@@ -1481,7 +1468,11 @@
 
             // Window resize
             window.addEventListener('resize', function() {
-                currentSlide = 0;
+                // Don't reset slide position, just recalculate layout
+                const maxSlide = totalSlides - Math.floor(getVisibleSlides());
+                if (currentSlide > maxSlide) {
+                    currentSlide = maxSlide;
+                }
                 createDots();
                 updateSlider();
             });
