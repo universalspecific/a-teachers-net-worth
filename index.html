@@ -1296,16 +1296,25 @@
 
             function nextSlide() {
                 const maxSlide = totalSlides - Math.floor(getVisibleSlides());
+                alert(`nextSlide: current=${currentSlide}, max=${maxSlide}`);
                 if (currentSlide < maxSlide) {
                     currentSlide++;
+                    alert(`After increment: currentSlide=${currentSlide}`);
                     updateSlider();
+                } else {
+                    alert('Already at max slide');
                 }
             }
 
             function prevSlide() {
+                const maxSlide = totalSlides - Math.floor(getVisibleSlides());
+                alert(`prevSlide: current=${currentSlide}, max=${maxSlide}`);
                 if (currentSlide > 0) {
                     currentSlide--;
+                    alert(`After decrement: currentSlide=${currentSlide}`);
                     updateSlider();
+                } else {
+                    alert('Already at min slide');
                 }
             }
 
