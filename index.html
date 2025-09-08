@@ -1282,20 +1282,42 @@
             function updateSlider() {
                 console.log(`updateSlider called: currentSlide=${currentSlide}`);
                 
-                // Calculate actual spacing by measuring the difference between first two cards
-                const cards = wrapper.children;
-                let actualGap = 0;
-                if (cards.length > 1) {
-                    const firstCardRect = cards[0].getBoundingClientRect();
-                    const secondCardRect = cards[1].getBoundingClientRect();
-                    actualGap = secondCardRect.left - firstCardRect.right;
+                let offset = 0;
+                
+                if (window.innerWidth <= 768) {
+                    // On mobile: position each card exactly at the left edge
+                    // Account for container padding
+                    const containerPadding = 10; // from .testimonials-container padding: 0 10px
+                    
+                    if (currentSlide === 0) {
+                        offset = 0;
+                    } else {
+                        // Calculate cumulative width of all previous cards plus their margins
+                        for (let i = 0; i < currentSlide; i++) {
+                            const card = wrapper.children[i];
+                            const cardStyle = window.getComputedStyle(card);
+                            const cardWidth = card.offsetWidth;
+                            const marginRight = parseFloat(cardStyle.marginRight) || 0;
+                            offset += cardWidth + marginRight;
+                        }
+                        // Add gap between cards
+                        offset += currentSlide * 4; // 0.5rem gap = 8px, but account for margins
+                    }
+                } else {
+                    // Desktop: use original logic
+                    const cards = wrapper.children;
+                    let actualGap = 0;
+                    if (cards.length > 1) {
+                        const firstCardRect = cards[0].getBoundingClientRect();
+                        const secondCardRect = cards[1].getBoundingClientRect();
+                        actualGap = secondCardRect.left - firstCardRect.right;
+                    }
+                    const slideWidth = cards[0].offsetWidth;
+                    offset = currentSlide * (slideWidth + actualGap);
                 }
                 
-                const slideWidth = cards[0].offsetWidth;
-                const offset = currentSlide * (slideWidth + actualGap);
                 wrapper.style.transform = `translateX(-${offset}px)`;
-                
-                console.log(`Slide ${currentSlide}: slideWidth=${slideWidth}, actualGap=${actualGap}, offset=${offset}`);
+                console.log(`Slide ${currentSlide}: offset=${offset}, mobile=${window.innerWidth <= 768}`);
                 
                 // Update dots
                 const dots = dotsContainer.querySelectorAll('.carousel-dot');
