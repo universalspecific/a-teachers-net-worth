@@ -1353,35 +1353,56 @@
             // Touch support
             let startX = null;
             let currentX = null;
+            let startY = null;
+            let hasSwiped = false;
 
             wrapper.addEventListener('touchstart', function(e) {
                 startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                currentX = startX;
+                hasSwiped = false;
                 stopAutoSlide();
             }, { passive: true });
 
             wrapper.addEventListener('touchmove', function(e) {
-                if (!startX) return;
+                if (!startX || !startY) return;
                 currentX = e.touches[0].clientX;
-                // Only prevent default if we're actually swiping horizontally
-                if (Math.abs(startX - currentX) > Math.abs(e.touches[0].clientY - (e.touches[0].clientY || 0))) {
+                const currentY = e.touches[0].clientY;
+                
+                const diffX = Math.abs(startX - currentX);
+                const diffY = Math.abs(startY - currentY);
+                
+                // Only prevent default if we're clearly swiping horizontally
+                if (diffX > diffY && diffX > 10) {
                     e.preventDefault();
+                    hasSwiped = true;
                 }
             }, { passive: false });
 
             wrapper.addEventListener('touchend', function(e) {
-                if (!startX || !currentX) return;
+                if (!startX || currentX === null) return;
                 
                 const diffX = startX - currentX;
-                if (Math.abs(diffX) > 50) {
+                const absDiffX = Math.abs(diffX);
+                
+                // Only trigger slide change if we had a clear horizontal swipe
+                if (hasSwiped && absDiffX > 50) {
                     if (diffX > 0) {
                         nextSlide();
                     } else {
                         prevSlide();
                     }
+                    // Delay auto-slide restart to prevent conflicts
+                    setTimeout(startAutoSlide, 100);
+                } else {
+                    // Restart auto-slide immediately if no swipe occurred
+                    startAutoSlide();
                 }
+                
                 startX = null;
                 currentX = null;
-                startAutoSlide();
+                startY = null;
+                hasSwiped = false;
             }, { passive: true });
 
             // Mouse drag support
@@ -1410,11 +1431,14 @@
                     } else {
                         prevSlide();
                     }
+                    // Delay auto-slide restart to prevent conflicts
+                    setTimeout(startAutoSlide, 100);
+                } else {
+                    startAutoSlide();
                 }
                 mouseDown = false;
                 mouseStartX = null;
                 wrapper.style.cursor = 'grab';
-                startAutoSlide();
             });
 
             wrapper.addEventListener('mouseleave', function() {
