@@ -1325,7 +1325,7 @@
                         currentSlide++;
                     }
                     updateSlider();
-                }, 4000);
+                }, 5000); // Slower auto-slide
             }
 
             function stopAutoSlide() {
@@ -1338,16 +1338,20 @@
             // Event listeners
             prevBtn.onclick = function() {
                 console.log('Previous button clicked');
+                userInteracting = true;
                 prevSlide();
                 stopAutoSlide();
-                startAutoSlide();
+                userInteracting = false;
+                setTimeout(startAutoSlide, 3000);
             };
 
             nextBtn.onclick = function() {
                 console.log('Next button clicked');
+                userInteracting = true;
                 nextSlide();
                 stopAutoSlide();
-                startAutoSlide();
+                userInteracting = false;
+                setTimeout(startAutoSlide, 3000);
             };
 
             // Touch support
@@ -1355,12 +1359,14 @@
             let currentX = null;
             let startY = null;
             let hasSwiped = false;
+            let userInteracting = false;
 
             wrapper.addEventListener('touchstart', function(e) {
                 startX = e.touches[0].clientX;
                 startY = e.touches[0].clientY;
                 currentX = startX;
                 hasSwiped = false;
+                userInteracting = true;
                 stopAutoSlide();
             }, { passive: true });
 
@@ -1387,22 +1393,27 @@
                 
                 // Only trigger slide change if we had a clear horizontal swipe
                 if (hasSwiped && absDiffX > 50) {
+                    console.log('Touch swipe detected, direction:', diffX > 0 ? 'next' : 'prev');
                     if (diffX > 0) {
                         nextSlide();
                     } else {
                         prevSlide();
                     }
-                    // Delay auto-slide restart to prevent conflicts
-                    setTimeout(startAutoSlide, 100);
-                } else {
-                    // Restart auto-slide immediately if no swipe occurred
-                    startAutoSlide();
                 }
                 
+                // Reset all touch states
                 startX = null;
                 currentX = null;
                 startY = null;
                 hasSwiped = false;
+                userInteracting = false;
+                
+                // Longer delay before restarting auto-slide after touch
+                setTimeout(() => {
+                    if (!userInteracting) {
+                        startAutoSlide();
+                    }
+                }, 3000);
             }, { passive: true });
 
             // Mouse drag support
@@ -1413,6 +1424,7 @@
                 mouseDown = true;
                 mouseStartX = e.clientX;
                 wrapper.style.cursor = 'grabbing';
+                userInteracting = true;
                 stopAutoSlide();
             });
 
@@ -1431,14 +1443,19 @@
                     } else {
                         prevSlide();
                     }
-                    // Delay auto-slide restart to prevent conflicts
-                    setTimeout(startAutoSlide, 100);
-                } else {
-                    startAutoSlide();
                 }
+                
                 mouseDown = false;
                 mouseStartX = null;
                 wrapper.style.cursor = 'grab';
+                userInteracting = false;
+                
+                // Longer delay before restarting auto-slide after mouse drag
+                setTimeout(() => {
+                    if (!userInteracting) {
+                        startAutoSlide();
+                    }
+                }, 3000);
             });
 
             wrapper.addEventListener('mouseleave', function() {
