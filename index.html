@@ -493,6 +493,9 @@
             display: flex;
             transition: transform 0.3s ease;
             gap: 2rem;
+            touch-action: pan-y pinch-zoom;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         .testimonials-wrapper .testimonial-card {
@@ -1277,6 +1280,7 @@
             }
 
             function updateSlider() {
+                console.log(`updateSlider called: currentSlide=${currentSlide}`);
                 const slideWidth = wrapper.children[0].offsetWidth;
                 const gap = window.innerWidth <= 768 ? 8 : 32; // 0.5rem on mobile, 2rem on desktop
                 const offset = currentSlide * (slideWidth + gap);
@@ -1359,16 +1363,19 @@
             let hasSwiped = false;
             let userInteracting = false;
 
-            wrapper.addEventListener('touchstart', function(e) {
+            // Bind touch events to both wrapper and slider container for better coverage
+            const touchTarget = document.querySelector('.testimonials-slider');
+            touchTarget.addEventListener('touchstart', function(e) {
                 startX = e.touches[0].clientX;
                 startY = e.touches[0].clientY;
                 currentX = startX;
                 hasSwiped = false;
                 userInteracting = true;
                 stopAutoSlide();
+                console.log('Touch start');
             }, { passive: true });
 
-            wrapper.addEventListener('touchmove', function(e) {
+            touchTarget.addEventListener('touchmove', function(e) {
                 if (!startX || !startY) return;
                 currentX = e.touches[0].clientX;
                 const currentY = e.touches[0].clientY;
@@ -1383,14 +1390,17 @@
                 }
             }, { passive: false });
 
-            wrapper.addEventListener('touchend', function(e) {
+            touchTarget.addEventListener('touchend', function(e) {
                 if (!startX || currentX === null) return;
                 
                 const diffX = startX - currentX;
                 const absDiffX = Math.abs(diffX);
                 
+                console.log(`Touch end: diffX=${diffX}, absDiffX=${absDiffX}, hasSwiped=${hasSwiped}`);
+                
                 // Only trigger slide change if we had a clear horizontal swipe
                 if (hasSwiped && absDiffX > 50) {
+                    console.log(`Triggering slide: ${diffX > 0 ? 'next' : 'prev'}, currentSlide=${currentSlide}`);
                     if (diffX > 0) {
                         nextSlide();
                     } else {
@@ -1483,7 +1493,13 @@
             startAutoSlide();
             wrapper.style.cursor = 'grab';
             
+            // Force touch event binding by adding touch-action CSS
+            wrapper.style.touchAction = 'pan-y pinch-zoom';
+            wrapper.style.userSelect = 'none';
+            
             console.log('Slider initialized successfully!');
+            console.log('Touch events bound to:', wrapper);
+            console.log('Wrapper dimensions:', wrapper.offsetWidth, 'x', wrapper.offsetHeight);
         }
 
         // Start initialization
