@@ -1394,6 +1394,7 @@
                 // Only trigger slide change if we had a clear horizontal swipe
                 if (hasSwiped && absDiffX > 50) {
                     console.log('Touch swipe detected, direction:', diffX > 0 ? 'next' : 'prev');
+                    alert(`Swipe: ${diffX > 0 ? 'next' : 'prev'}, current: ${currentSlide}`);
                     if (diffX > 0) {
                         nextSlide();
                     } else {
