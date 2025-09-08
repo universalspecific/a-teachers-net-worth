@@ -1281,10 +1281,21 @@
 
             function updateSlider() {
                 console.log(`updateSlider called: currentSlide=${currentSlide}`);
-                const slideWidth = wrapper.children[0].offsetWidth;
-                const gap = window.innerWidth <= 768 ? 8 : 32; // 0.5rem on mobile, 2rem on desktop
-                const offset = currentSlide * (slideWidth + gap);
+                
+                // Calculate actual spacing by measuring the difference between first two cards
+                const cards = wrapper.children;
+                let actualGap = 0;
+                if (cards.length > 1) {
+                    const firstCardRect = cards[0].getBoundingClientRect();
+                    const secondCardRect = cards[1].getBoundingClientRect();
+                    actualGap = secondCardRect.left - firstCardRect.right;
+                }
+                
+                const slideWidth = cards[0].offsetWidth;
+                const offset = currentSlide * (slideWidth + actualGap);
                 wrapper.style.transform = `translateX(-${offset}px)`;
+                
+                console.log(`Slide ${currentSlide}: slideWidth=${slideWidth}, actualGap=${actualGap}, offset=${offset}`);
                 
                 // Update dots
                 const dots = dotsContainer.querySelectorAll('.carousel-dot');
