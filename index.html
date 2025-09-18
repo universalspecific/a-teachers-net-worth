@@ -639,6 +639,7 @@
         .resources {
             padding: 4rem 0;
             background: var(--bg-light);
+            border-top: 3px solid var(--accent-color);
         }
 
         .resources h2 {
@@ -867,6 +868,22 @@
         </div>
     </section>
 
+    <!-- Newsletter Signup -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Stay Connected</h2>
+            <form class="newsletter-form" method="POST" netlify name="newsletter" id="newsletterForm">
+                <input type="hidden" name="form-name" value="newsletter">
+                <input type="email" name="email" placeholder="Enter your email" required id="emailInput">
+                <button type="submit" id="submitButton">Subscribe</button>
+            </form>
+            <div class="newsletter-success" id="successMessage" style="display: none;">
+                <h3>✅ Thank you for subscribing!</h3>
+                <p>You'll receive financial tips and resources for educators in your inbox soon.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Resources Section -->
     <section id="resources" class="resources">
         <div class="container">
@@ -1012,22 +1029,6 @@
                     <h3>For the Profession</h3>
                     <p>Financial wellness extends beyond the individual. By clarifying compensation and providing educators with practical tools, <i>A Teacher's Net Worth</i> helps elevate the teaching profession as a whole.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Signup -->
-    <section class="newsletter">
-        <div class="container">
-            <h2>Stay Connected</h2>
-            <form class="newsletter-form" method="POST" netlify name="newsletter" id="newsletterForm">
-                <input type="hidden" name="form-name" value="newsletter">
-                <input type="email" name="email" placeholder="Enter your email" required id="emailInput">
-                <button type="submit" id="submitButton">Subscribe</button>
-            </form>
-            <div class="newsletter-success" id="successMessage" style="display: none;">
-                <h3>✅ Thank you for subscribing!</h3>
-                <p>You'll receive financial tips and resources for educators in your inbox soon.</p>
             </div>
         </div>
     </section>
