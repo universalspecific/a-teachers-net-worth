@@ -104,6 +104,58 @@
             color: var(--accent-color);
         }
 
+        /* Mobile Navigation */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a3d52 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            z-index: 999;
+        }
+
+        .mobile-nav.active {
+            display: block;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .mobile-nav li {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mobile-nav a {
+            display: block;
+            padding: 1rem 2rem;
+            color: white;
+            text-decoration: none;
+            font-family: 'Arial Narrow', Arial, sans-serif;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .mobile-nav a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--accent-color);
+        }
+
         /* Main Content */
         .main-content {
             margin-top: 80px;
@@ -307,6 +359,10 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
             nav ul {
                 display: none;
             }
@@ -345,8 +401,21 @@
                 <li><a href="index.html#story">The ATNW Story</a></li>
                 <li><a href="solutions.html">Products & Services</a></li>
             </ul>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
         </nav>
     </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#resources">What's Included</a></li>
+            <li><a href="index.html#impact">Impact</a></li>
+            <li><a href="index.html#testimonials">Testimonials</a></li>
+            <li><a href="index.html#story">The ATNW Story</a></li>
+            <li><a href="solutions.html">Products & Services</a></li>
+        </ul>
+    </div>
 
     <!-- Solutions Section -->
     <section class="solutions main-content">
@@ -396,6 +465,11 @@
                     <p>Don&#8217;t wait for your best talent to leave to ask questions. Our stay assessments offer a proactive approach to identify and address factors impacting employee retention. This helps you keep your top performers and strategically attract new hires, strengthening your team for the long term.</p>
                 </div>
 
+                <div class="solution-item solution-highlight">
+                    <h3>Wellness Plan Design</h3>
+                    <p>Supporting the <em>whole teacher</em>, ATNW helps districts design wellness plans and strategies that integrate financial, physical, and emotional health into the total rewards package—boosting morale, engagement, and long-term retention.</p>
+                </div>
+
                 <div class="solution-item coming-soon">
                     <h3>Video Course</h3>
                     <p>Take the ATNW journey at a pace that fits any schedule. The course includes the engaging A Teacher&#8217;s Net Worth fully customizable and confidential spreadsheet, an invaluable tool to guide users on their financial journey now and in the future.</p>
@@ -423,6 +497,28 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+
+        mobileMenuToggle.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileMenuToggle.contains(e.target) && !mobileNav.contains(e.target)) {
+                mobileNav.classList.remove('active');
+            }
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
